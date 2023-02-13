@@ -1,4 +1,4 @@
 export const environment = {
   production: true,
-  socketUrl: 'https://one-chat.vercel.app',
+  socketUrl: 'https://onechat-socket.herokuapp.com',
 };
