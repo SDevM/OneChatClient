@@ -18,7 +18,7 @@ export class AppComponent {
     });
     socketService.on('message', (new_msg: Message) => this.msgs.push(new_msg));
     socketService.on('online', (clients: string[]) => {
-      this.onlineList = clients;
+      if (clients.length > 0) this.onlineList = clients;
     });
   }
 
