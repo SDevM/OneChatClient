@@ -12,7 +12,7 @@ import { AppComponent } from './app.component';
     BrowserModule,
     FormsModule,
     SocketIoModule.forRoot({
-      url: environment.socketUrl, // socket server url;
+      url: environment.socketUrl,
       options: {
         transports: ['websocket'],
       },

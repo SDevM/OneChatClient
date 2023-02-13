@@ -1,21 +1,29 @@
-<div class="chat-container">
-  <div class="chat-header">OneChat ChatBox</div>
-  <div class="chat-messages">
-    <div *ngFor="let msg of msgs" class="message-container">
-      <p class="sender">{{ msg.owner }}</p>
-      <p class="message">{{ msg.content }}</p>
+<section id="chatpage">
+  <div class="chat-container">
+    <div class="chat-header">OneChat ChatBox</div>
+    <div class="chat-messages">
+      <div *ngFor="let msg of msgs" class="message-container">
+        <p class="sender">{{ msg.owner }}</p>
+        <p class="message">{{ msg.content }}</p>
+      </div>
+    </div>
+    <div class="chat-input">
+      <form #f="ngForm">
+        <input
+          type="text"
+          name="messenger"
+          placeholder="Enter your message..."
+          [(ngModel)]="msg"
+          required=""
+        />
+        <button type="submit" (click)="f.valid && submit()">Send</button>
+      </form>
     </div>
   </div>
-  <div class="chat-input">
-    <form #f="ngForm">
-      <input
-        type="text"
-        name="messenger"
-        placeholder="Enter your message..."
-        [(ngModel)]="msg"
-        required=""
-      />
-      <button type="submit" (click)="f.valid && submit()">Send</button>
-    </form>
+  <div class="user-display">
+    <div class="username">Online Users</div>
+    <div *ngFor="let online of onlineList" class="status">
+      {{ online }}
+    </div>
   </div>
-</div>
+</section>

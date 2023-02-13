@@ -1,3 +1,8 @@
+#chatpage {
+  display: flex;
+  font-family: "Inter";
+}
+
 .chat-container {
   display: flex;
   flex-direction: column;
@@ -7,7 +12,6 @@
   border: 1px solid #ccc;
   border-radius: 5px;
   overflow: hidden;
-  font-family: "Inter";
 }
 
 .chat-header {
@@ -64,4 +68,25 @@ button[type="submit"] {
   padding: 10px 20px;
   font-size: 16px;
   cursor: pointer;
+}
+
+.user-display {
+  width: 300px;
+  padding: 20px;
+  background-color: #f2f2f2;
+  border: 1px solid #ccc;
+  text-align: center;
+  border-radius: 5px;
+}
+
+.username {
+  font-size: 24px;
+  font-weight: bold;
+  margin-bottom: 10px;
+}
+
+.status {
+  color: green;
+  font-size: 18px;
+  margin-bottom: 20px;
 }

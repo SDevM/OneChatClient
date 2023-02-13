@@ -18,4 +18,8 @@ export class SocketService {
   message(msg: string) {
     this.socket.emit('message', msg);
   }
+
+  online() {
+    this.socket.emit('online');
+  }
 }
