@@ -2,7 +2,7 @@ import { NgModule } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { BrowserModule } from '@angular/platform-browser';
 import { SocketIoModule } from 'ngx-socket-io';
-import { environment } from 'src/environments/environment.development';
+import { environment } from 'src/environments/environment';
 
 import { AppComponent } from './app.component';
 
