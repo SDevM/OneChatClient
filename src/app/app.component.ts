@@ -12,7 +12,7 @@ export class AppComponent {
   msgs: Message[] = [];
   constructor(private socketService: SocketService) {
     socketService.on('backlog', (msgStack: Message[]) => {
-      this.msgs.push(...msgStack);
+      if (msgStack) this.msgs.push(...msgStack);
     });
     socketService.on('message', (new_msg: Message) => this.msgs.push(new_msg));
   }
