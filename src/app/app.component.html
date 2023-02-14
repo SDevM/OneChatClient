@@ -1,10 +1,10 @@
 <section id="chatpage">
   <div class="chat-container">
-    <div class="chat-header">OneChat ChatBox</div>
+    <div class="chat-header">Anonychat!</div>
     <div class="chat-messages">
       <div *ngFor="let msg of msgs" class="message-container">
         <p class="sender">{{ msg.owner }}</p>
-        <p class="message">{{ msg.content }}</p>
+        <div class="message">{{ msg.content }}</div>
       </div>
     </div>
     <div class="chat-input">
@@ -21,6 +21,10 @@
     </div>
   </div>
   <div class="user-display">
+    <div class="rename">
+      Name:
+      <input type="text" name="name" [(ngModel)]="name" (change)="rename()" />
+    </div>
     <div class="username">Online Users</div>
     <div *ngFor="let online of onlineList" class="status">
       {{ online }}

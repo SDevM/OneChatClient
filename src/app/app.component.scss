@@ -7,10 +7,8 @@
   display: flex;
   flex-direction: column;
   width: 100%;
-  height: 90vh;
+  height: 100vh;
   background-color: #f2f2f2;
-  border: 1px solid #ccc;
-  border-radius: 5px;
   overflow: hidden;
 }
 
@@ -23,9 +21,21 @@
 }
 
 .chat-messages {
+  background-color: darkgrey;
   flex-grow: 1;
   overflow: auto;
   padding: 10px;
+  background-color: #e5e5f7;
+  background-image: radial-gradient(circle at center center, darkgrey, black),
+    repeating-radial-gradient(
+      circle at center center,
+      grey,
+      grey,
+      10px,
+      transparent 20px,
+      transparent 10px
+    );
+  background-blend-mode: multiply;
 }
 
 .message-container {
@@ -33,20 +43,22 @@
 }
 
 .sender {
+  color: #f2f2f2;
   font-weight: bold;
   margin-bottom: 5px;
 }
 
 .message {
-  background-color: #fff;
+  width: fit-content;
+  background-color: gray;
+  color: white;
   padding: 10px;
   border-radius: 5px;
 }
 
 .chat-input {
-  background-color: #fff;
+  background-color: #333;
   padding: 10px;
-  border-top: 1px solid #ccc;
 }
 
 form {
@@ -57,27 +69,36 @@ input[type="text"] {
   flex-grow: 1;
   min-width: 40px;
   padding: 10px;
-  border: 1px solid #ccc;
   border-radius: 5px;
 }
 
 button[type="submit"] {
-  background-color: #333;
+  background-color: transparent;
   color: #fff;
   border: none;
   border-radius: 5px;
   padding: 10px 20px;
+  margin-left: 5vw;
   font-size: 16px;
   cursor: pointer;
 }
 
+button[type="submit"]:hover {
+  background-color: #222;
+}
+
 .user-display {
+  display: flex;
+  flex-direction: column;
   width: 300px;
   padding: 20px;
   background-color: #f2f2f2;
-  border: 1px solid #ccc;
   text-align: center;
-  border-radius: 5px;
+  overflow-y: scroll;
+}
+
+.user-display > .rename {
+  margin-bottom: 5vh;
 }
 
 .username {

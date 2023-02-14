@@ -5,11 +5,7 @@ import { Socket } from 'ngx-socket-io';
   providedIn: 'root',
 })
 export class SocketService {
-  name: string = '';
-  constructor(private socket: Socket) {
-    this.name = prompt('Please enter your name: ') || 'Anon';
-    socket.emit('name', this.name);
-  }
+  constructor(private socket: Socket) {}
 
   on(event: string, callback: Function) {
     this.socket.on(event, callback);
@@ -21,5 +17,9 @@ export class SocketService {
 
   online() {
     this.socket.emit('online');
+  }
+
+  name(name: string) {
+    this.socket.emit('name', name);
   }
 }

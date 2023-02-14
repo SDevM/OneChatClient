@@ -10,6 +10,7 @@ import { SocketService } from './services/socket.service';
 export class AppComponent {
   title = 'OneChatClient';
   msg = '';
+  name = 'Anon';
   msgs: Message[] = [];
   onlineList: string[] = [];
   constructor(private socketService: SocketService) {
@@ -21,11 +22,15 @@ export class AppComponent {
       console.log(clients);
       if (clients.length > 0) this.onlineList = clients;
     });
+    socketService.name(this.name);
   }
 
   submit() {
     this.socketService.message(this.msg);
     this.msg = '';
+  }
+  rename() {
+    this.socketService.name(this.name);
   }
 }
 
