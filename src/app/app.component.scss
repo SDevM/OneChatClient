@@ -17,7 +17,9 @@
   color: #fff;
   padding: 10px;
   text-align: center;
-  font-size: 20px;
+  font-size: 30px;
+  font-weight: bolder;
+  text-transform: uppercase;
 }
 
 .chat-messages {
@@ -25,16 +27,7 @@
   flex-grow: 1;
   overflow: auto;
   padding: 10px;
-  background-color: #e5e5f7;
-  background-image: radial-gradient(circle at center center, darkgrey, black),
-    repeating-radial-gradient(
-      circle at center center,
-      grey,
-      grey,
-      10px,
-      transparent 20px,
-      transparent 10px
-    );
+  background-color: #333;
   background-blend-mode: multiply;
 }
 
@@ -53,11 +46,21 @@
   background-color: gray;
   color: white;
   padding: 10px;
+  border: 1px solid #222;
   border-radius: 5px;
+  background-color: #333;
+  opacity: 1;
+  background-image: linear-gradient(135deg, #222 25%, transparent 25%),
+    linear-gradient(225deg, #222 25%, transparent 25%),
+    linear-gradient(45deg, #222 25%, transparent 25%),
+    linear-gradient(315deg, #222 25%, #333 25%);
+  background-position: 8px 0, 8px 0, 0 0, 0 0;
+  background-size: 8px 8px;
+  background-repeat: repeat;
 }
 
 .chat-input {
-  background-color: #333;
+  background-color: #222;
   padding: 10px;
 }
 
@@ -69,7 +72,8 @@ input[type="text"] {
   flex-grow: 1;
   min-width: 40px;
   padding: 10px;
-  border-radius: 5px;
+  border: none;
+  outline: none;
 }
 
 button[type="submit"] {
@@ -84,7 +88,7 @@ button[type="submit"] {
 }
 
 button[type="submit"]:hover {
-  background-color: #222;
+  background-color: #111;
 }
 
 .user-display {
