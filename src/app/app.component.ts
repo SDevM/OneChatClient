@@ -12,6 +12,7 @@ export class AppComponent {
   msg = '';
   dmsg = '';
   name? = 'Anon';
+  placename = '';
   msgs: Message[] = [];
   dmTarget = '';
   dmsgs: Message[] = [];
@@ -46,6 +47,7 @@ export class AppComponent {
   }
   rename() {
     this.socketService.name(this.name!);
+    this.placename = this.name!;
     this.name = undefined;
   }
   dmOpen(id: string) {
