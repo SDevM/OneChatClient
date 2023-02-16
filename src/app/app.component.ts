@@ -33,8 +33,9 @@ export class AppComponent {
     socketService.on('loadDm', (msgs: Message[]) => {
       if (msgs) this.dmsgs = msgs;
     });
-    socketService.on('directMessage', (msg: Message) => {
-      if (this.dmBox && this.dmTarget == msg.id) this.dmsgs.push(msg);
+    socketService.on('directMessage', (msg: Message, me: string) => {
+      if (this.dmBox && (this.dmTarget == msg.id || me == msg.id))
+        this.dmsgs.push(msg);
       console.log(msg);
     });
     socketService.name(this.name!);
