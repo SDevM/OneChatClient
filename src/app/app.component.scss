@@ -76,7 +76,7 @@ input[type="text"] {
   outline: none;
 }
 
-button[type="submit"] {
+button {
   background-color: transparent;
   color: #fff;
   border: none;
@@ -87,7 +87,7 @@ button[type="submit"] {
   cursor: pointer;
 }
 
-button[type="submit"]:hover {
+button:hover {
   background-color: #111;
 }
 
