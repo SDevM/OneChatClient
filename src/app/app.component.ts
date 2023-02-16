@@ -11,7 +11,7 @@ export class AppComponent {
   title = 'OneChatClient';
   msg = '';
   dmsg = '';
-  name = 'Anon';
+  name? = 'Anon';
   msgs: Message[] = [];
   dmTarget = '';
   dmsgs: Message[] = [];
@@ -36,7 +36,7 @@ export class AppComponent {
       if (this.dmBox) this.dmsgs.push(msg);
       console.log(msg);
     });
-    socketService.name(this.name);
+    socketService.name(this.name!);
     //  TODO Fix id discrepancy preventing frontend from identifying self-messages
   }
 
@@ -45,8 +45,8 @@ export class AppComponent {
     this.msg = '';
   }
   rename() {
-    this.socketService.name(this.name);
-    this.name = '';
+    this.socketService.name(this.name!);
+    this.name = undefined;
   }
   dmOpen(id: string) {
     this.dmTarget = id;
