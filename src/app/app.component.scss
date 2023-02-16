@@ -115,4 +115,34 @@ button[type="submit"]:hover {
   color: green;
   font-size: 18px;
   margin-bottom: 20px;
+  cursor: pointer;
+}
+
+.dmBox {
+  position: absolute;
+  top: 0;
+  left: 0;
+  background-color: #00000088;
+  width: 100vw;
+  height: 100vh;
+}
+
+.dmBox > .box {
+  position: absolute;
+  display: flex;
+  flex-direction: column;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 25vw;
+  height: 60vh;
+  background-color: lightgray;
+}
+
+.dmBox > .box > .chat-messages {
+  flex-grow: 1;
+}
+
+.dmBox > .box > .chat-messages > .right {
+  margin-left: auto;
 }

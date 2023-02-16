@@ -10,17 +10,27 @@ import { SocketService } from './services/socket.service';
 export class AppComponent {
   title = 'OneChatClient';
   msg = '';
+  dmsg = '';
   name = 'Anon';
   msgs: Message[] = [];
-  onlineList: string[] = [];
+  dmTarget = '';
+  dmsgs: Message[] = [];
+  dmBox = false;
+  onlineList: { id: string; name: string }[] = [];
   constructor(private socketService: SocketService) {
     socketService.on('backlog', (msgStack: Message[]) => {
       if (msgStack) this.msgs = msgStack;
     });
     socketService.on('message', (new_msg: Message) => this.msgs.push(new_msg));
-    socketService.on('online', (clients: string[]) => {
+    socketService.on('online', (clients: { id: string; name: string }[]) => {
       console.log(clients);
       if (clients.length > 0) this.onlineList = clients;
+    });
+    socketService.on('loadDm', (msgs: Message[]) => {
+      this.dmsgs = msgs;
+    });
+    socketService.on('directMessage', (msg: Message) => {
+      if (this.dmBox) this.dmsgs.push(msg);
     });
     socketService.name(this.name);
   }
@@ -31,6 +41,15 @@ export class AppComponent {
   }
   rename() {
     this.socketService.name(this.name);
+  }
+  dmOpen(id: string) {
+    this.dmTarget = id;
+    this.dmBox = true;
+    this.socketService.loadDirect(id);
+  }
+  dm() {
+    this.socketService.directMessage(this.dmTarget, this.dmsg);
+    this.dmsg = '';
   }
 }
 

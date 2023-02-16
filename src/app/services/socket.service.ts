@@ -22,4 +22,12 @@ export class SocketService {
   name(name: string) {
     this.socket.emit('name', name);
   }
+
+  directMessage(id: string, text: string) {
+    this.socket.emit('directMessage', { id, text });
+  }
+
+  loadDirect(id: string) {
+    this.socket.emit('loadDm', id);
+  }
 }

@@ -26,8 +26,38 @@
       <input type="text" name="name" [(ngModel)]="name" (change)="rename()" />
     </div>
     <div class="username">Online Users</div>
-    <div *ngFor="let online of onlineList" class="status">
-      {{ online }}
+    <div
+      *ngFor="let online of onlineList"
+      class="status"
+      (click)="dmOpen(online.id)"
+    >
+      {{ online.name }}
     </div>
   </div>
 </section>
+<div *ngIf="dmBox" class="dmBox">
+  <div class="box">
+    <div class="chat-messages">
+      <div
+        *ngFor="let msg of dmsgs"
+        [class]="'message-container' + dmTarget == msg.id ? '' : 'right'"
+      >
+        <p class="sender">{{ msg.owner }}</p>
+        <div class="message">{{ msg.content }}</div>
+      </div>
+    </div>
+    <div class="chat-input">
+      <form #f2="ngForm">
+        <input
+          type="text"
+          name="messenger"
+          placeholder="Enter your message..."
+          [(ngModel)]="dmsg"
+          required=""
+        />
+        <button type="submit" (click)="f2.valid && dm()">Send</button>
+        <button (click)="dmBox = false">Exit</button>
+      </form>
+    </div>
+  </div>
+</div>
