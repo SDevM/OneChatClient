@@ -144,5 +144,7 @@ button:hover {
 }
 
 .dmBox > .box > .chat-messages > .right {
-  margin-left: auto;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
 }

@@ -40,7 +40,7 @@
     <div class="chat-messages">
       <div
         *ngFor="let msg of dmsgs"
-        [class]="'message-container' + dmTarget == msg.id ? '' : 'right'"
+        [class]="'message-container' + (dmTarget == msg.id ? '' : ' right')"
       >
         <p class="sender">{{ msg.owner }}</p>
         <div class="message">{{ msg.content }}</div>

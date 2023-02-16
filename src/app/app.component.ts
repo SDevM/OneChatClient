@@ -21,18 +21,23 @@ export class AppComponent {
     socketService.on('backlog', (msgStack: Message[]) => {
       if (msgStack) this.msgs = msgStack;
     });
-    socketService.on('message', (new_msg: Message) => this.msgs.push(new_msg));
+    socketService.on('message', (new_msg: Message) => {
+      this.msgs.push(new_msg);
+      console.log(new_msg);
+    });
     socketService.on('online', (clients: { id: string; name: string }[]) => {
       console.log(clients);
       if (clients.length > 0) this.onlineList = clients;
     });
     socketService.on('loadDm', (msgs: Message[]) => {
-      this.dmsgs = msgs;
+      if (msgs) this.dmsgs = msgs;
     });
     socketService.on('directMessage', (msg: Message) => {
       if (this.dmBox) this.dmsgs.push(msg);
+      console.log(msg);
     });
     socketService.name(this.name);
+    //  TODO Fix id discrepancy preventing frontend from identifying self-messages
   }
 
   submit() {
