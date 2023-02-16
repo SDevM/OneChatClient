@@ -23,7 +23,13 @@
   <div class="user-display">
     <div class="rename">
       Name:
-      <input type="text" name="name" [(ngModel)]="name" (change)="rename()" />
+      <input
+        type="text"
+        name="name"
+        [placeholder]="name"
+        [(ngModel)]="name"
+        (change)="rename()"
+      />
     </div>
     <div class="username">Online Users</div>
     <div

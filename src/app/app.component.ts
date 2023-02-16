@@ -46,6 +46,7 @@ export class AppComponent {
   }
   rename() {
     this.socketService.name(this.name);
+    this.name = '';
   }
   dmOpen(id: string) {
     this.dmTarget = id;
