@@ -17,11 +17,12 @@ export class AppComponent {
   dmTarget = '';
   dmsgs: Message[] = [];
   dmBox = false;
+  statusbarUp = true;
   onlineList: { id: string; name: string }[] = [];
   activeList: string[] = [];
   tone = new Audio('https://i.cloudup.com/E021I9zUG3.m4a');
   constructor(private socketService: SocketService) {
-    this.tone.volume = 0.5;
+    this.tone.volume = 0.25;
     socketService.on('backlog', (msgStack: Message[]) => {
       if (msgStack) this.msgs = msgStack;
     });
@@ -62,8 +63,9 @@ export class AppComponent {
   }
   dmOpen(id: string) {
     this.dmTarget = id;
-    this.activeList.filter((val) => val != this.dmTarget);
-    this.onlineList = this.onlineList;
+    this.activeList = this.activeList.filter((val) => {
+      val != this.dmTarget;
+    });
     this.dmBox = true;
     this.socketService.loadDirect(id);
   }
