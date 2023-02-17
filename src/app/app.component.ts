@@ -43,7 +43,7 @@ export class AppComponent {
         this.tone
           .play()
           .catch((err) => console.log('Message tone failed \n', err));
-        this.activeList.push(msg.id);
+        if (!this.activeList.includes(msg.id)) this.activeList.push(msg.id);
         console.log(msg);
       }
     });
