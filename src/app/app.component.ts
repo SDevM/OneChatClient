@@ -62,9 +62,10 @@ export class AppComponent {
   }
   dmOpen(id: string) {
     this.dmTarget = id;
+    this.activeList.filter((val) => val != this.dmTarget);
+    this.onlineList = this.onlineList;
     this.dmBox = true;
     this.socketService.loadDirect(id);
-    this.activeList.filter((val) => val != id);
   }
   dm() {
     this.socketService.directMessage(this.dmTarget, this.dmsg);
