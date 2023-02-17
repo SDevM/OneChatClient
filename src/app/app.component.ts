@@ -18,7 +18,10 @@ export class AppComponent {
   dmsgs: Message[] = [];
   dmBox = false;
   onlineList: { id: string; name: string }[] = [];
+  activeList: string[] = [];
+  tone = new Audio('https://i.cloudup.com/E021I9zUG3.m4a');
   constructor(private socketService: SocketService) {
+    this.tone.volume = 0.5;
     socketService.on('backlog', (msgStack: Message[]) => {
       if (msgStack) this.msgs = msgStack;
     });
@@ -36,7 +39,13 @@ export class AppComponent {
     socketService.on('directMessage', (msg: Message, me: string) => {
       if (this.dmBox && (this.dmTarget == msg.id || me == msg.id))
         this.dmsgs.push(msg);
-      console.log(msg);
+      else {
+        this.tone
+          .play()
+          .catch((err) => console.log('Message tone failed \n', err));
+        this.activeList.push(msg.id);
+        console.log(msg);
+      }
     });
     socketService.name(this.name!);
     //  TODO Fix id discrepancy preventing frontend from identifying self-messages
