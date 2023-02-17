@@ -12,7 +12,7 @@ export class AppComponent {
   msg = '';
   dmsg = '';
   name? = 'Anon';
-  placename = '';
+  placename = 'Anon';
   msgs: Message[] = [];
   dmTarget = '';
   dmsgs: Message[] = [];
@@ -28,11 +28,9 @@ export class AppComponent {
     });
     socketService.on('message', (new_msg: Message) => {
       this.msgs.push(new_msg);
-      console.log(new_msg);
     });
     socketService.on('online', (clients: { id: string; name: string }[]) => {
-      console.log(clients);
-      if (clients.length > 0) this.onlineList = clients;
+      this.onlineList = clients;
     });
     socketService.on('loadDm', (msgs: Message[]) => {
       if (msgs) this.dmsgs = msgs;
@@ -45,7 +43,6 @@ export class AppComponent {
           .play()
           .catch((err) => console.log('Message tone failed \n', err));
         if (!this.activeList.includes(msg.id)) this.activeList.push(msg.id);
-        console.log(msg);
       }
     });
     socketService.name(this.name!);
