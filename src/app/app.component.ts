@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { Socket } from 'ngx-socket-io';
+import Swal from 'sweetalert2';
 import { SocketService } from './services/socket.service';
 
 @Component({
@@ -46,7 +47,18 @@ export class AppComponent {
       }
     });
     socketService.name(this.name!);
-    //  TODO Fix id discrepancy preventing frontend from identifying self-messages
+
+    // ERRORS
+    socketService.on('NAMETAKEN', () => {
+      this.name = 'Anon';
+      this.placename = 'Anon';
+      Swal.fire({
+        toast: true,
+        title: "We're sorry...",
+        text: 'The name you chose is already in use!',
+        timer: 2500,
+      });
+    });
   }
 
   submit() {
