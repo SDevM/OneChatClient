@@ -11,8 +11,8 @@ export class SocketService {
     this.socket.on(event, callback);
   }
 
-  message(msg: string) {
-    this.socket.emit('message', msg);
+  message(msg: string, file?: File) {
+    this.socket.emit('message', msg, file);
   }
 
   online() {

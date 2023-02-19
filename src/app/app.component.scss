@@ -42,6 +42,8 @@
 }
 
 .message {
+  display: flex;
+  flex-direction: column;
   width: fit-content;
   background-color: gray;
   color: white;
@@ -155,4 +157,9 @@ button:hover {
   display: flex;
   flex-direction: column;
   align-items: flex-end;
+}
+
+.msgImg {
+  max-width: 25vw;
+  max-height: 50vh;
 }

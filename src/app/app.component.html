@@ -4,7 +4,14 @@
     <div class="chat-messages">
       <div *ngFor="let msg of msgs" class="message-container">
         <p class="sender">{{ msg.owner }}</p>
-        <div class="message">{{ msg.content }}</div>
+        <div class="message">
+          {{ msg.content }}
+          <img
+            *ngIf="msg.image"
+            class="msgImg"
+            src="data:image/png;base64,{{ msg.image }}"
+          />
+        </div>
       </div>
     </div>
     <div class="chat-input">
@@ -16,6 +23,25 @@
           [(ngModel)]="msg"
           required=""
         />
+        <div>
+          <input
+            type="file"
+            style="display: none"
+            accept="image/*"
+            (change)="onFileSelected($event)"
+            #fileUpload
+          />
+          <div class="file-upload">
+            <button
+              mat-mini-fab
+              color="primary"
+              class="upload-btn"
+              (click)="fileUpload.click()"
+            >
+              <mat-icon>attach_file</mat-icon>
+            </button>
+          </div>
+        </div>
         <button type="submit" (click)="f.valid && submit()">Send</button>
       </form>
     </div>

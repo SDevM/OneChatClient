@@ -1,5 +1,4 @@
 import { Component } from '@angular/core';
-import { Socket } from 'ngx-socket-io';
 import Swal from 'sweetalert2';
 import { SocketService } from './services/socket.service';
 
@@ -14,6 +13,7 @@ export class AppComponent {
   dmsg = '';
   name? = 'Anon';
   placename = 'Anon';
+  upload: String = '';
   msgs: Message[] = [];
   dmTarget = '';
   dmsgs: Message[] = [];
@@ -25,6 +25,8 @@ export class AppComponent {
   constructor(private socketService: SocketService) {
     this.tone.volume = 0.25;
     socketService.on('backlog', (msgStack: Message[]) => {
+      console.log(msgStack[msgStack.length - 1]);
+
       if (msgStack) this.msgs = msgStack;
     });
     socketService.on('message', (new_msg: Message) => {
@@ -82,10 +84,17 @@ export class AppComponent {
     this.socketService.directMessage(this.dmTarget, this.dmsg);
     this.dmsg = '';
   }
+
+  onFileSelected(event: any) {
+    const file = event.target.files[0];
+    this.socketService.message(this.msg, file);
+    this.msg = '';
+  }
 }
 
 interface Message {
   id: string;
   owner: string;
   content: string;
+  image: string;
 }
