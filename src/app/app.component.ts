@@ -87,6 +87,8 @@ export class AppComponent {
 
   onFileSelected(event: any) {
     const file = event.target.files[0];
+    console.log(file);
+
     if (!file) return;
     this.socketService.message(this.msg, file);
     this.msg = '';

@@ -23,6 +23,7 @@
           [(ngModel)]="msg"
           required=""
         />
+        <button type="submit" (click)="f.valid && submit()">Send</button>
         <div>
           <input
             type="file"
@@ -42,7 +43,6 @@
             </button>
           </div>
         </div>
-        <button type="submit" (click)="f.valid && submit()">Send</button>
       </form>
     </div>
   </div>
