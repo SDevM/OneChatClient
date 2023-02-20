@@ -1,8 +1,12 @@
 <section id="chatpage">
   <div class="chat-container">
     <div class="chat-header">Anonychat!</div>
-    <div class="chat-messages">
-      <div *ngFor="let msg of msgs" class="message-container">
+    <div #chatArea class="chat-messages">
+      <!-- <div
+        *ngFor="let msg of msgs; let i = index"
+        [id]="i == msgs.length - 1 ? 'latest' : ''"
+        class="message-container"
+      >
         <p class="sender">{{ msg.owner }}</p>
         <div class="message">
           {{ msg.content }}
@@ -12,7 +16,7 @@
             src="data:image/*;base64,{{ msg.image }}"
           />
         </div>
-      </div>
+      </div> -->
     </div>
     <div class="chat-input">
       <form #f="ngForm">

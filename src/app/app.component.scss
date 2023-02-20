@@ -10,6 +10,12 @@
   height: 100vh;
   background-color: #f2f2f2;
   overflow: hidden;
+
+  scrollbar-width: 0;
+  ::-webkit-scrollbar {
+    display: none;
+    width: 0;
+  }
 }
 
 .chat-header {
