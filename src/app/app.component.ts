@@ -52,22 +52,19 @@ export class AppComponent implements AfterViewInit {
     this.socketService.on('loadDm', (msgs: Message[]) => {
       if (msgs) this.dmsgs = msgs;
     });
-    this.socketService.on('directMessage', (msg: Message, me: string) => {
-      if (this.dmBox && (this.dmTarget == msg.id || me == msg.id))
-        this.dmsgs.push(msg);
-      else {
-        this.tone
-          .play()
-          .catch((err) => console.log('Message tone failed \n', err));
-        if (!this.activeList.includes(msg.id)) this.activeList.push(msg.id);
-      }
+    this.socketService.on('directMessage', (msg: Message) => {
+      this.dmsgs.push(msg);
+      this.tone
+        .play()
+        .catch((err) => console.log('Message tone failed \n', err));
+      if (!this.activeList.includes(msg.id)) this.activeList.push(msg.id);
     });
     this.socketService.on('disconnect', () => {
       Swal.fire({
         title: 'Oops...',
         text: 'Your socket disconnected, time for a new identity',
         confirmButtonText: 'Reconnect',
-      }).finally(location.reload);
+      }).then(() => location.reload());
     });
     this.socketService.name(this.name!);
 
